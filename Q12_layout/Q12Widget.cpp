@@ -35,7 +35,8 @@ void Widget::setupUI()
     };
     m_nQuestionCount = sizeof(questions)/sizeof(questions[0]);
     m_scores = new QComboBox*[m_nQuestionCount];
-
+    //正常情况下，可以使用this->setLayout()将一个布局管理器作用在本身的widget上面，而如果直接向下面那行代码中显示的给一个QVBoxLayout类传入
+    //this指针，则可以等效于把widget的布局设置为QVBoxLayout这个类的实例。
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QHBoxLayout *line;
     QLabel * question;

@@ -26,7 +26,7 @@ ProgramSkillWidget::ProgramSkillWidget(QWidget *parent)
             this, SLOT(onSubmit()));
     layout->addWidget(m_submitButton, 0,
                       Qt::AlignVCenter | Qt::AlignRight);
-    setupProgramSkillTable();
+    setupProgramSkillTable();   //这种方式可以学习，私有的成员变量在构造函数中完成初始化，其他的布局过程新建一个函数完成！！
 }
 
 ProgramSkillWidget::~ProgramSkillWidget()
@@ -109,16 +109,16 @@ void ProgramSkillWidget::setupProgramSkillTable()
 {
     connect(m_skillTable, SIGNAL(cellClicked(int,int)),
             this, SLOT(onCellClicked(int,int)));
-    m_skillTable->setEditTriggers(QTableWidget::NoEditTriggers);
+    m_skillTable->setEditTriggers(QTableWidget::NoEditTriggers);  //禁止编辑表格内容
     QStringList headers("Skill");
     headers << "Description" << "Level" << "Year <40";
-    m_skillTable->setHorizontalHeaderLabels(headers);
+    m_skillTable->setHorizontalHeaderLabels(headers);  //设置水平表头，也可用setHorizontalHeaderItem()方法设置带图标的表头
     int count = m_skills.size();
     ProgramSkill *skill;
     QComboBox *levelCombo;
     QLineEdit *yearEdit;
     QIntValidator *validator;
-    m_skillTable->setColumnWidth(0, 130);
+    m_skillTable->setColumnWidth(0, 130);   //设置每一列的宽度
     m_skillTable->setColumnWidth(1, 200);
     m_skillTable->setColumnWidth(2, 150);
     m_skillTable->setColumnWidth(3,100);
@@ -143,8 +143,12 @@ void ProgramSkillWidget::setupProgramSkillTable()
         m_years.append(yearEdit);
         connect(yearEdit, SIGNAL(textChanged(QString)),
                 this, SLOT(onYearsChanged(QString)));
-        validator = new QIntValidator(0, 40, yearEdit);
+        validator = new QIntValidator(0, 40, yearEdit);  //只能输入数字
         yearEdit->setValidator(validator);
         m_skillTable->setCellWidget(i, 3, yearEdit);
     }
+    //下面代表改变表头的某一个单元格的颜色，自行研究
+//    QTableWidgetItem *header0 = m_skillTable->horizontalHeaderItem(0);
+//    header0->setBackgroundColor(QColor(255,0,0));
+//    header0->setTextColor(QColor(0,0,255));
 }
