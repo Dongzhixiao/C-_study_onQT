@@ -33,12 +33,13 @@ void CountThread::run()
     qDebug() << "CountThread id - " << (unsigned int)QThread::currentThreadId();
     QTimer timer;
     SecondFirer firer(10);
-    connect(&timer, SIGNAL(timeout()), &firer, SLOT(onTimeout()));
+    connect(&timer, SIGNAL(timeout()), &firer, SLOT(onTimeout()));  //onTimerout()函数可以负责结束本线程的事件循环
     timer.start(1000);
 
     if(!m_receiver.isNull())
     {
         qDebug() << "connect firer && receiver";
+        //下面这个连接跨线程了，因为m_receiver是构造时传进来的一个QWidget类，即主线程的指针，就可以实现与主线程的通信
         connect(&firer, SIGNAL(secondLeft(int,uint)), m_receiver.data(), SLOT(onSecondLeft(int,uint)));
     }
 

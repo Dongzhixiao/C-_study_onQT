@@ -23,7 +23,7 @@ private:
 class CountThread : public QThread  //使用线程必须继承QThread
 {
 public:
-    CountThread(QWidget * receiver);
+    CountThread(QWidget * receiver);  //本例中通过线程对象的构造函数传入主线程对象的指针
     ~CountThread();
 
 protected:
