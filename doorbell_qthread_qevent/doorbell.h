@@ -26,7 +26,7 @@ class Ringer : public QObject
 {
     Q_OBJECT
 public:
-    Ringer(BellThread * t);
+    Ringer(BellThread * t);   //Ringer事件构造时传入线程的指针
 public slots:
     void onTimeout();
 private:
@@ -37,7 +37,7 @@ class BellThread : public QThread
 {
     friend class Ringer;
 public:
-    BellThread(QObject * receiver);
+    BellThread(QObject * receiver);   //线程构造时传入主线程的指针
 
 protected:
     void run();
