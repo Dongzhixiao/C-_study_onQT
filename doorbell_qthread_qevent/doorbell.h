@@ -7,7 +7,18 @@
 #include <QPointer>
 #include <QStringList>
 #include <QTimer>
-
+/*你可以在QEvent子类中添加自己的事件所需要的数据，然后进行事件的发送。Qt中提供了两种发送方式：
+ *1.static bool QCoreApplication::sendEvent(QObjecy * receiver, QEvent * event)：事件被QCoreApplication的notify()函数
+ * 直接发送给receiver对象，返回值是事件处理函数的返回值。使用这个函数必须要在栈上创建对象，例如：
+ * QMouseEvent event(QEvent::MouseButtonPress, pos, 0, 0, 0);
+ * QApplication::sendEvent(mainWindow, &event);
+ *2.static bool QCoreApplication::postEvent(QObject * receiver, QEvent * event)：事件被QCoreApplication追加到事件列表的最后，
+ * 并等待处理，该函数将事件追加后会立即返回，并且注意，该函数是线程安全的。另外一点是，使用这个函数必须要在堆上创建对象，例如：
+ * QApplication::postEvent(object, new MyEvent(QEvent::registerEventType(2048)));
+ * 这个对象不需要手动delete，Qt会自动delete掉！因此，如果在post事件之后调用delete，程序可能会崩溃。
+ * 另外，postEvent()函数还有一个重载的版本，增加一个优先级参数，具体请参见API。通过调用sendPostedEvent()函数可以让已提交的事件立即得到处理。
+ * 注意：跨线程一定要用第二种！！！！
+ */
 class BellEvent : public QEvent  //用于线程之间通信的一个自定义事件，主要学习自定义事件的写法！！！
 {
 public:
