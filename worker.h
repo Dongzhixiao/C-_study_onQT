@@ -1,4 +1,4 @@
-//目录遍历工作线程
+//目录遍历工作线程：采用“线程+工人+事件”模式！
 #ifndef WORKER_H
 #define WORKER_H
 

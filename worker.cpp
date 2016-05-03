@@ -10,7 +10,7 @@ RunnableExcutedEvent::RunnableExcutedEvent(Runnable *r)
 
 QEvent::Type RunnableExcutedEvent::evType()
 {
-/*继承QEvent类，你需要提供一个QEvent::Type类型的参数，作为自定义事件的类型值。这里的QEvent::Type类型是QEvent里面定义的一个enum，
+/* 继承QEvent类，你需要提供一个QEvent::Type类型的参数，作为自定义事件的类型值。这里的QEvent::Type类型是QEvent里面定义的一个enum，
  * 因此，你是可以传递一个int的。重要的是，你的事件类型不能和已经存在的type值重复，否则会有不可预料的错误发生！
  * 因为系统会将你的事件当做系统事件进行派发和调用。在Qt中，系统将保留0 - 999的值，也就是说，你的事件type要大于999.
  * 具体来说，你的自定义事件的type要在QEvent::User和QEvent::MaxUser的范围之间。其中，QEvent::User值是1000，
