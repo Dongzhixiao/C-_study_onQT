@@ -139,6 +139,8 @@ void IpQuery::onReplyFinished(QNetworkReply *reply)
         parenthesisLeft++;
         data = data.mid(parenthesisLeft, parenthesisRight - parenthesisLeft);
     }
+    //第5步：
+    //下面两行根据数据生成QJsonDocument对象
     QJsonParseError err;
     QJsonDocument json = QJsonDocument::fromJson(data, &err);
     if(err.error != QJsonParseError::NoError)
@@ -147,13 +149,14 @@ void IpQuery::onReplyFinished(QNetworkReply *reply)
         emit finished(false, strIp, m_emptyString);
         return;
     }
+    //下两行找到根对象名为“data”的key对应的值
     QJsonObject obj = json.object();
     QJsonObject::const_iterator it = obj.find("data");
     if(it != obj.constEnd())
     {
-        QJsonArray dataArray = it.value().toArray();
-        QJsonObject info = dataArray.first().toObject();
-        QString area = info.find("location").value().toString();
+        QJsonArray dataArray = it.value().toArray();  //找的data对应值，使用toArray()转换为QJsonArray
+        QJsonObject info = dataArray.first().toObject();  //使用QJsonArray的first()方法取第一个元素,使用toObject()转换为QJsonObject
+        QString area = info.find("location").value().toString();  //使用find()方法,以"location"为key值进行查找，结果转为String类
         emit finished(true, strIp, area);
     }
 }
