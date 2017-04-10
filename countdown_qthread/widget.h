@@ -6,8 +6,8 @@
 #include <QThread>
 #include <QPointer>
 
-class SecondFirer : public QObject //Õâ¸öÀà»áÔÚĞÂÏß³ÌÖĞ¹¹½¨ËüµÄÊµÀı£¬ÕâÊÇÕıÍ³µÄ×ö·¨£¬ÓÃÀ´ÊµÏÖµ¹¼ÆÊ±µÄ´¥·¢Âß¼­
-{                                   //Êµ¼ÊÔËÓÃÊ±¿ÉÒÔ´¦ÀíĞèÒªÔÚÏß³ÌÖĞÊµÏÖµÄ´¥·¢Âß¼­
+class SecondFirer : public QObject //è¿™ä¸ªç±»ä¼šåœ¨æ–°çº¿ç¨‹ä¸­æ„å»ºå®ƒçš„å®ä¾‹ï¼Œè¿™æ˜¯æ­£ç»Ÿçš„åšæ³•ï¼Œç”¨æ¥å®ç°å€’è®¡æ—¶çš„è§¦å‘é€»è¾‘
+{                                   //å®é™…è¿ç”¨æ—¶å¯ä»¥å¤„ç†éœ€è¦åœ¨çº¿ç¨‹ä¸­å®ç°çš„è§¦å‘é€»è¾‘
     Q_OBJECT
 public:
     SecondFirer(int seconds) : m_nSeconds(seconds){}
@@ -20,18 +20,18 @@ private:
     int m_nSeconds;
 };
 
-class CountThread : public QThread  //Ê¹ÓÃÏß³Ì±ØĞë¼Ì³ĞQThread
+class CountThread : public QThread  //ä½¿ç”¨çº¿ç¨‹å¿…é¡»ç»§æ‰¿QThread
 {
 public:
-    CountThread(QWidget * receiver);  //±¾ÀıÖĞÍ¨¹ıÏß³Ì¶ÔÏóµÄ¹¹Ôìº¯Êı´«ÈëÖ÷Ïß³Ì¶ÔÏóµÄÖ¸Õë
+    CountThread(QWidget * receiver);  //æœ¬ä¾‹ä¸­é€šè¿‡çº¿ç¨‹å¯¹è±¡çš„æ„é€ å‡½æ•°ä¼ å…¥ä¸»çº¿ç¨‹å¯¹è±¡çš„æŒ‡é’ˆ
     ~CountThread();
 
 protected:
-    void run();  //Ïß³ÌÄÚÊµÏÖµÄÂß¼­ĞèÒªÔÚrun()º¯ÊıÄÚÊµÏÖ
+    void run();  //çº¿ç¨‹å†…å®ç°çš„é€»è¾‘éœ€è¦åœ¨run()å‡½æ•°å†…å®ç°
 
 private:
-    QPointer<QWidget> m_receiver;  //ÖÇÄÜÖ¸Õë±£´æWidgetµÄÊµÀı£¬Ëü±£´æµÄQObjectÖ¸ÕëÖ¸ÏòµÄ¶ÔÏóÏú»ÙÊ±»áµÃµ½Í¨Öª×ÔĞĞ¹éNULL
-};                                 //ÎÒÃÇÓÃËüµÄisNull()·½·¨ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ·ÃÎÊËü³ÖÓĞµÄ¶ÔÏóµÄÖ¸Õë
+    QPointer<QWidget> m_receiver;  //æ™ºèƒ½æŒ‡é’ˆä¿å­˜Widgetçš„å®ä¾‹ï¼Œå®ƒä¿å­˜çš„QObjectæŒ‡é’ˆæŒ‡å‘çš„å¯¹è±¡é”€æ¯æ—¶ä¼šå¾—åˆ°é€šçŸ¥è‡ªè¡Œå½’NULL
+};                                 //æˆ‘ä»¬ç”¨å®ƒçš„isNull()æ–¹æ³•åˆ¤æ–­æ˜¯å¦å¯ä»¥è®¿é—®å®ƒæŒæœ‰çš„å¯¹è±¡çš„æŒ‡é’ˆ
 
 class Widget : public QWidget
 {
