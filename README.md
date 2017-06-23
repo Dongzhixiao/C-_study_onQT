@@ -1,7 +1,9 @@
 C++StudyOnQt
 ================
-###　　　　　　　　　　　　Author:冬之晓:blush:
-###　　　　　　　　　　E-mail:34916416@qq.com
+　　　　　　　　　　　　Author:冬之晓:blush:
+----------------
+  　　　　　　　　　　E-mail:34916416@qq.com
+----------------
 ***
 - This is a library which contains many programs.  
 - The content of these programs are about qt.  
